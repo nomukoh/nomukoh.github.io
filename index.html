@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>k. nomura - Personal Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* テーマカラー変数 */
+        :root {
+            --text-main: #444444;
+            --text-light: #777777;
+            --bg-body: #f7f7f7;
+            --bg-card: #f5f5f5;
+            
+            --theme-red: #eb5528;
+            --theme-blue: #40bbf4;
+            --theme-green: #85c83e;
+            --theme-yellow: #f2c524;
+            
+            --colorful-gradient: linear-gradient(90deg, var(--theme-red), var(--theme-blue), var(--theme-green), var(--theme-yellow));
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+        }
+        
+        header {
+            text-align: center;
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 3px;
+            background: var(--colorful-gradient);
+            border-radius: 3px;
+        }
+        
+        h1 {
+            color: #222222;
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        
+        h2 {
+            color: #333333;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--colorful-gradient);
+            border-radius: 3px;
+        }
+        
+        section {
+            margin-bottom: 40px;
+        }
+        
+        .skills-list, .links-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .skill-tag {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            border: 1px solid #eeeeee;
+        }
+
+        .link-button {
+            background-color: #444444;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px; 
+        }
+
+        .link-button:hover {
+            background-color: #222222;
+            transform: translateY(-2px);
+        }
+
+        .link-button img {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* ======== カード (list-item) のスタイル ======== */
+        .list-item {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            
+            margin-bottom: 15px;
+            padding: 20px;
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            border-left: 5px solid #ccc;
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+        }
+
+        /* リンクが設定されている(href属性がある)カードのみのスタイル */
+        .list-item[href] {
+            cursor: pointer;
+            padding-right: 40px;
+        }
+
+        .list-item[href]:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+        }
+
+        /* リンクありカードの右上に「↗」アイコンを表示 */
+        .list-item[href]::after {
+            content: '\2197'; /* ↗ のユニコード */
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.4em;
+            color: #bbbbbb;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* ホバー時にアイコンの色を変化させて少し右上に動かす */
+        .list-item[href]:hover::after {
+            color: var(--text-main);
+            transform: translate(2px, -2px);
+        }
+
+        /* 各リストアイテムの左線を順番にカラフルにする */
+        section .list-item:nth-of-type(4n+1) { border-left-color: var(--theme-red); }
+        section .list-item:nth-of-type(4n+2) { border-left-color: var(--theme-blue); }
+        section .list-item:nth-of-type(4n+3) { border-left-color: var(--theme-green); }
+        section .list-item:nth-of-type(4n)   { border-left-color: var(--theme-yellow); }
+        
+        .item-title {
+            font-weight: bold;
+            color: #222222;
+            margin-bottom: 5px;
+            font-size: 1.15em;
+        }
+        
+        .item-details {
+            color: var(--text-light);
+            font-size: 0.95em;
+            margin-bottom: 8px;
+        }
+
+        .item-description {
+            font-size: 0.95em;
+            color: var(--text-main);
+        }
+
+        ul.standard-list {
+            list-style-type: none;
+            margin-left: 5px;
+            margin-top: 10px;
+        }
+
+        ul.standard-list li {
+            margin-bottom: 6px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        ul.standard-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #aaaaaa;
+            font-size: 1.2em;
+            line-height: 1;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #eeeeee;
+            color: var(--text-light);
+            font-size: 0.9em;
+        }
+        
+        .last-updated {
+            font-style: normal;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>k. nomura</h1>
+            <p class="subtitle">Data Scientist / University Student</p>
+            <div class="links-list" style="justify-content: center;">
+                <a href="https://github.com/nomukoh" target="_blank" class="link-button">
+                    <img src="https://cdn.simpleicons.org/github/white" alt="GitHub Logo">
+                    GitHub
+                </a>
+                <a href="https://qiita.com/nomukoh" target="_blank" class="link-button">
+                    <img src="https://cdn.simpleicons.org/qiita/white" alt="Qiita Logo">
+                    Qiita
+                </a>
+                <!-- <a href="https://www.wantedly.com/id/" target="_blank" class="link-button">
+                    <img src="https://cdn.simpleicons.org/wantedly/white" alt="Wantedly Logo">
+                    Wantedly
+                </a> -->
+            </div>
+        </header>
+        
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                エンジニアとして Google Cloud を用いた AI サービスの開発に携わっています。また、ハッカソンなどにも参加しています。
+            </p>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            <a href="https://hibari-ai.com/" target="_blank" class="list-item">
+                <div class="item-title">株式会社HIBARI</div>
+                <div class="item-details">データサイエンティスト (2025年 - )</div>
+                <div class="item-description">
+                    Google Cloud を用いた AI サービスの開発
+                </div>
+            </a>
+        </section>
+        
+        <!-- <section id="education">
+            <h2>Education</h2>
+            <a class="list-item">
+                <div class="item-title">〇〇大学</div>
+                <div class="item-details">工学部 (20xx年 - 現在)</div>
+                <div class="item-description"></div>
+            </a>
+            <a class="list-item">
+                <div class="item-title">〇〇学校</div>
+                <div class="item-details">(20xx年 - 20xx年)</div>
+                <div class="item-description"></div>
+            </a>
+        </section> -->
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <a class="list-item">
+                <div class="item-title">わらび餅キング (GDGoC Japan Hackathon 2026)</div>
+                <div class="item-description">
+                    <p>ユーザーの「感性」をもとに、複数人に向けた最適な YouTube 動画を提案するアプリケーション。
+                        Embedding 技術を用いてコメントから動画の感性を抽出し、作品や人とのマッチングを行う仕組みを構築しました。</p>
+                    <ul class="standard-list">
+                        <li><strong>Frontend:</strong> Flutter, Dart</li>
+                        <li><strong>Backend:</strong> Python, Cloud Run, YouTube Data API, OAuth 2.0, Cloud SQL (PostgreSQL + pgvector), Gemini API, Embedding</li>
+                    </ul>
+                </div>
+            </a>
+        </section>
+        
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-list">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">C</span>
+                <span class="skill-tag">Dart</span>
+                <span class="skill-tag">Flutter</span>
+                <span class="skill-tag">HTML / CSS</span>
+                <span class="skill-tag">Google Cloud (GCP)</span>
+                <span class="skill-tag">Cloud Run</span>
+                <span class="skill-tag">Cloud SQL (PostgreSQL / pgvector)</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Git / GitHub</span>
+                <span class="skill-tag">Streamlit</span>
+                <span class="skill-tag">Vertex AI / Gemini API</span>
+                <span class="skill-tag">Arduino</span>
+                <span class="skill-tag">Raspberry Pi</span>
+            </div>
+        </section>
+        
+        <section id="publications">
+            <h2>Publications & Research</h2>
+            <a class="list-item">
+                <div class="item-title">環境音の特徴を捉える潜在空間表現の設計</div>
+                <div class="item-details">工業高等専門学校 / 2024年度</div>
+                <div class="item-description">CNNを用いた特徴抽出と深層距離学習を組み合わせ、ノイズや録音環境に依存しない環境音の特徴空間を取得することを目的として研究を行いました。音声情報を用いた車種分類と速度推定の精度向上を目指しました。</div>
+            </a>
+        </section>
+        
+        <section id="awards">
+            <h2>Awards & Activities</h2>
+            <a href="https://gdsc-jp.connpass.com/event/378883/" target="_blank" class="list-item">
+                <div class="item-title">予選開催地賞 - GDGoC Japan Hackathon 2026</div>
+                <div class="item-details">2026年3月</div>
+                <div class="item-description">各7会場を主催する団体の審査員を最も魅了したプロジェクトに贈られる賞</div>
+            </a>
+            <a href="https://jaxa-business-contest.peatix.com/" target="_blank" class="list-item">
+                <div class="item-title">NTT東日本賞 - ［長野市×JAXA］高専生ビジネスプランコンテスト</div>
+                <div class="item-details">2021年3月</div>
+                <div class="item-description"></div>
+            </a>
+        </section>
+        
+        <footer>
+            <p class="last-updated">Last Updated: <span id="last-updated-date"></span></p>
+            <p>&copy; nomukoh</p>
+        </footer>
+    </div>
+    
+    <script>
+        // ファイルの最終更新日時を取得
+        const lastMod = new Date(document.lastModified);
+        document.getElementById('last-updated-date').textContent = lastMod.toLocaleDateString('ja-JP');
+    </script>
+</body>
+</html>

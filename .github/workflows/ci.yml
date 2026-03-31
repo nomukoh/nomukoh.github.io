@@ -1,0 +1,20 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, reopened, synchronize]
+
+jobs:
+  # ↓ この「code-check」がGitHubの設定画面で検索する名前になります
+  code-check:
+    runs-on: ubuntu-latest
+    steps:
+      # 将来的にコードをチェックしたくなった時のために、リポジトリの中身を取得する記述を入れておきます
+      - uses: actions/checkout@v4
+
+      - name: run code check (dummy)
+        run: |
+          echo '将来ここにテストやLintツールを入れます'
+          echo '今はとりあえず成功(Pass)扱いにします'
